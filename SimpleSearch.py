@@ -3,8 +3,8 @@ import requests
 import lxml
 
 def main():
-    searchQuery = lambda x: ("https://stlouis.craigslist.org/search/sss?sort=date&query=" + x)
-    response = requests.get(searchQuery("bicycle"))
+    def search(x): return ("https://stlouis.craigslist.org/search/sss?sort=date&query=" + x)
+    response = requests.get(search("bicycle"))
     data = response.text
 
     soup = BeautifulSoup(data, features="lxml")
