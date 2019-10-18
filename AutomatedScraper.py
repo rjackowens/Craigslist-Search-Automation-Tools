@@ -1,18 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
-from config import searchTerm, minPrice, maxPrice
+from config import fullUrl
 
 
 def main():
 
-    def url(search, min, max):
-        return ("https://stlouis.craigslist.org/search/sss?sort=date&query=" + search + min + max)
-
-    response = requests.get(url(
-        searchTerm,
-        "&min_price=" + str(minPrice),
-        "&max_price=" + str(maxPrice)
-        ))
+    response = requests.get(fullUrl)
 
     data = response.text
     soup = BeautifulSoup(data, features="lxml")
