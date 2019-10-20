@@ -1,10 +1,7 @@
-from selenium import webdriver 
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
-import lxml
 import time
+from selenium import webdriver
+from bs4 import BeautifulSoup
+from selenium.webdriver.common.keys import Keys
 
 b = webdriver.Firefox()
 b.get("https://stlouis.craigslist.org/")
@@ -15,7 +12,7 @@ search = b.find_element_by_xpath("//input[@id='query']")
 search.click()
 search.send_keys("Bicycle" + Keys.RETURN)
 
-time.sleep(2) # Wait for results to load
+time.sleep(2)  # Wait for results to load
 
 # Sort Results by Date
 select_dropdown = b.find_element_by_xpath("//div[@class='search-sort']")
