@@ -1,6 +1,9 @@
-from bs4 import BeautifulSoup
 import requests
+import os.path
+import pandas as pd
+
 from config import fullUrl
+from bs4 import BeautifulSoup
 
 
 def main():
@@ -44,13 +47,12 @@ def main():
     x.getPrices(priceResults)
     x.getDate(dateResults)
 
-    combined = zip(x.titles, x.prices, x.dates, x.urls)
+    combined = list(zip(x.titles, x.prices, x.dates, x.urls))
+    df_results = pd.DataFrame(combined, columns=["Title", "Price", "Posted", "URL"])
 
-    for title, price, date, url in combined:
-        print(f"{title} | {price} | {date} \n {url}")
+    exportPath = os.path.expandvars("/Users/$USER/Documents/results.csv")
+    df_results.to_csv(exportPath)
 
 
 if __name__ == '__main__':
     main()
-
-    
